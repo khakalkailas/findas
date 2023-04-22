@@ -2,7 +2,7 @@
   "name": "findas-php",
   "version": "0.1.0",
   "private": true,
-  "homepae": "http:khakalkailas.github.io/findas",
+  "homepae": "http:khakalkailas.github.io/findas_site",
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "@testing-library/jest-dom": "^5.16.5",
