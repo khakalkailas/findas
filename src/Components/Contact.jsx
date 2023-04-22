@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+
 
 export default function Contact() {
+    const form = useRef()
+    const sendEmail = (e) => {
+        e.preventDefault();
+        emailjs.sendForm(
+            'service_lb2bm4s', 
+            'template_vgmt1w8', form.current, 
+            'FfzKumRPPKdrA46lq')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+
+          e.target.reset()
+      };
+    
   return (
+    
     <>
         <section className="contactMainSec mainSection">
             
@@ -76,25 +95,25 @@ export default function Contact() {
                         </div>
                         <div className="col-sm-12 col-md-6">
                             <div className="content">
-                                <form action="#" className="form-contact" id="contactForm" data-toggle="validator" novalidate="true">
+                                <form action="#" ref={form} onSubmit={sendEmail} className="form-contact">
                                     <div className="form-group">
-                                        <input type="text" className="form-control" id="p_name" placeholder="Full Name..." required=""/>
+                                        <input type="text" className="form-control" name="user_name" placeholder="Full Name..." required=""/>
                                         <div className="help-block with-errors"></div>
                                     </div>
                                     <div className="form-group">
-                                        <input type="email" className="form-control" id="p_email" placeholder="Enter Address..." required=""/>
+                                        <input type="email" className="form-control" name="user_email" placeholder="Enter Address..." required=""/>
                                         <div className="help-block with-errors"></div>
                                     </div>
                                     <div className="form-group">
-                                        <input type="tel" className="form-control" id="p_phone" placeholder="Enter Phone..." required=""/>
+                                        <input type="tel" className="form-control" name="user_contact" placeholder="Enter Phone..." required=""/>
                                         <div className="help-block with-errors"></div>
                                     </div>
                                     <div className="form-group">
-                                        <input type="text" className="form-control" id="p_city" placeholder="Enter City..." required=""/>
+                                        <input type="text" className="form-control" name="user_city" placeholder="Enter City..." required=""/>
                                         <div className="help-block with-errors"></div>
                                     </div>
                                     <div className="form-group">
-                                        <textarea id="p_message" className="form-control" rows="6" placeholder="Write message"></textarea>
+                                        <textarea name="message" className="form-control" rows="6" placeholder="Write message"></textarea>
                                         <div className="help-block with-errors"></div>
                                     </div>
                                     <div className="form-group">
